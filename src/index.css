@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+body {
+  color: #fff !important;
+}
+
+.ant-layout-content {
+  @apply bg-stone-200 rounded-lg border-t;
+}
+
+.ant-layout-sider-children {
+  @apply bg-stone-50 border border-black rounded-lg;
+}
+
+.custom-sidebar {
+  @apply bg-stone-50;
+}

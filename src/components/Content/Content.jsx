@@ -5,7 +5,7 @@ const { Content } = Layout;
 
 const ContentComponent = () => {
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { borderRadiusLG },
   } = theme.useToken();
 
   return (
@@ -14,8 +14,8 @@ const ContentComponent = () => {
         margin: "24px 16px",
         padding: 24,
         minHeight: 280,
-        background: colorBgContainer,
         borderRadius: borderRadiusLG,
+        background: "#000 !important",
       }}
     >
       Content

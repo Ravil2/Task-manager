@@ -1,39 +1,39 @@
 import React from "react";
 import { Menu } from "antd";
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
+  HomeOutlined,
+  AppstoreOutlined,
+  FileDoneOutlined,
+  AppstoreAddOutlined,
+  FieldTimeOutlined,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
-const Sidebar = ({ collapsed }) => {
+const Sidebar = () => {
   return (
     <aside>
       <Menu
-        theme="dark"
-        mode="inline"
         defaultSelectedKeys={["1"]}
-        items={[
-          {
-            key: "1",
-            icon: <UserOutlined />,
-            label: "nav 1",
-          },
-          {
-            key: "2",
-            icon: <VideoCameraOutlined />,
-            label: "nav 2",
-          },
-          {
-            key: "3",
-            icon: <UploadOutlined />,
-            label: "nav 3",
-          },
-        ]}
-      />
+        className="custom-sidebar"
+      >
+        <Menu.Item key="1" icon={<HomeOutlined />}>
+          <Link to="/">Главная</Link>
+        </Menu.Item>
+        <Menu.Item key="2" icon={<AppstoreOutlined />}>
+          <Link to="/high-priority">Главные задачи</Link>
+        </Menu.Item>
+        <Menu.Item key="3" icon={<FileDoneOutlined />}>
+          <Link to="/completed">Выполненные задачи</Link>
+        </Menu.Item>
+        <Menu.Item key="4" icon={<AppstoreAddOutlined />}>
+          <Link to="/add-task">Добавить задачу</Link>
+        </Menu.Item>
+        <Menu.Item key="5" icon={<FieldTimeOutlined />}>
+          <Link to="/in-progress">Выполняются</Link>
+        </Menu.Item>
+      </Menu>
     </aside>
   );
 };
 
 export default Sidebar;
-  

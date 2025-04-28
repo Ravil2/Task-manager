@@ -1,10 +1,20 @@
 import React from "react";
-import { Button } from "antd";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Button, Flex } from "antd";
+import {
+  AppstoreAddOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from "@ant-design/icons";
 
 const HeaderComponent = ({ collapsed, setCollapsed }) => {
   return (
-    <header style={{ padding: 0, background: "inherit" }}>
+    <header
+      style={{
+        padding: 0,
+        background: "inherit",
+        display: 'flex'
+      }}
+    >
       <Button
         type="text"
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
