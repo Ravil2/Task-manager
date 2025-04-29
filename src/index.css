@@ -4,8 +4,7 @@ body {
   color: #fff !important;
 }
 
-/* тот самый контент */
-.ant-layout-content { 
+.ant-layout-content {
   @apply bg-stone-200 rounded-lg border-t;
 }
 
@@ -14,7 +13,7 @@ body {
 }
 
 .custom-sidebar {
-  @apply bg-stone-50;
+  @apply bg-stone-50 h-full;
 }
 
 .link {
@@ -25,6 +24,31 @@ body {
   color: #000;
 }
 
-.ant-form{
+.ant-form {
   padding: 15px;
+}
+
+@layer utilities {
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #000000 transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 4px;
+    border: 2px solid transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #000000;
+  }
 }

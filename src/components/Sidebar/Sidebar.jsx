@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
   return (
     <>
-      <aside>
+      <aside className="h-full">
         <Menu defaultSelectedKeys={["1"]} className="custom-sidebar">
           <Menu.Item key="1" icon={<HomeOutlined />}>
             <Link to="/">Главная</Link>

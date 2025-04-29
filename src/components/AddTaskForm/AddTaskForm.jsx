@@ -14,12 +14,12 @@ const AddTaskForm = ({ onAddTask }) => {
     };
 
     onAddTask(newTask);
-    form.resetFields(); // ← очищаем форму
+    form.resetFields(); 
   };
 
   return (
     <AntForm
-      form={form} // ← подключаем форму
+      form={form} 
       layout="vertical"
       className="bg-stone-100 rounded-lg shadow-md border"
       onFinish={handleSubmit}
