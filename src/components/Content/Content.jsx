@@ -16,6 +16,7 @@ const ContentComponent = () => {
         minHeight: 280,
         borderRadius: borderRadiusLG,
         background: "#000 !important",
+        
       }}
     >
       Content

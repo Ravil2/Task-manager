@@ -13,14 +13,14 @@ const AddTaskForm = ({ onAddTask }) => {
       name: taskName,
       description: taskDescription,
       date: taskDate,
-      priority: taskPriority,
+      priority: taskPriority || "low",
     };
 
     onAddTask(newTask);
     setTaskName("");
     setTaskDescription("");
     setTaskDate("");
-    setTaskPriority("");
+    setTaskPriority("low");
   };
 
   return (
