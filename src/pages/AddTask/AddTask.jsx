@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Form from "../../components/AddTaskForm/AddTaskForm";
 
-const AddTask = () => {
+const AddTask = ({ onAddTask }) => {
   return (
     <>
       <div className="border-b pb-3">
@@ -20,7 +20,7 @@ const AddTask = () => {
       </div>
 
       <div className="max-w-lg mx-auto mt-10">
-        <Form />
+        <Form onAddTask={onAddTask} />
       </div>
     </>
   );

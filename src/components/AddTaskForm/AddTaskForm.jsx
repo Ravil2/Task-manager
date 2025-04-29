@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form as AntForm, Input, Button, DatePicker, Select } from "antd";
 
-const AddTaskForm = () => {
+const AddTaskForm = ({ onAddTask }) => {
   const { Option } = Select;
+  const [taskName, setTaskName] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
+  const [taskDate, setTaskDate] = useState("");
+  const [taskPriority, setTaskPriority] = useState("");
+
+  const handleSubmit = () => {
+    const newTask = {
+      name: taskName,
+      description: taskDescription,
+      date: taskDate,
+      priority: taskPriority,
+    };
+
+    onAddTask(newTask);
+    setTaskName("");
+    setTaskDescription("");
+    setTaskDate("");
+    setTaskPriority("");
+  };
 
   return (
     <>
       <AntForm
         layout="vertical"
         className="bg-stone-100 rounded-lg shadow-md border"
+        onFinish={handleSubmit}
       >
         <h2 className="text-xl font-bold mb-4 text-gray-700">
           Добавить задачу
@@ -19,22 +39,36 @@ const AddTaskForm = () => {
           name="title"
           rules={[{ required: true, message: "Введите название задачи!" }]}
         >
-          <Input placeholder="Введите название" className="border-gray-300" />
+          <Input
+            value={taskName}
+            onChange={(e) => setTaskName(e.target.value)}
+            placeholder="Введите название"
+            className="border-gray-300"
+          />
         </AntForm.Item>
 
         <AntForm.Item label="Описание" name="description">
           <Input.TextArea
+            value={taskDescription}
+            onChange={(e) => setTaskDescription(e.target.value)}
             placeholder="Введите описание"
             className="border-gray-300"
           />
         </AntForm.Item>
 
         <AntForm.Item label="Дата окончания" name="dueDate">
-          <DatePicker className="w-full border-gray-300" />
+          <DatePicker
+            onChange={(date, dateString) => setTaskDate(dateString)}
+            className="w-full border-gray-300"
+          />
         </AntForm.Item>
 
         <AntForm.Item label="Приоритет" name="priority">
-          <Select className="border-gray-300" defaultValue="low">
+          <Select
+            onChange={(task) => setTaskPriority(task)}
+            className="border-gray-300"
+            defaultValue="low"
+          >
             <Option value="low">Низкий</Option>
             <Option value="medium">Средний</Option>
             <Option value="high">Высокий</Option>
