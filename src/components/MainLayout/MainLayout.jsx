@@ -3,6 +3,7 @@ import { Layout as AntLayout } from "antd";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 import { Outlet } from "react-router-dom";
+import MainContent from "../MainContent/MainContent";
 
 const { Sider } = AntLayout;
 
@@ -16,9 +17,9 @@ const MainLayout = () => {
       </Sider>
       <AntLayout>
         <Header collapsed={collapsed} setCollapsed={setCollapsed} />
-        <AntLayout.Content style={{ padding: "24px" }}>
+        <MainContent style={{ padding: "24px" }}>
           <Outlet />
-        </AntLayout.Content>
+        </MainContent>
       </AntLayout>
     </AntLayout>
   );

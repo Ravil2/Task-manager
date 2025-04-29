@@ -2,86 +2,92 @@ import React, { useState } from "react";
 import { Form as AntForm, Input, Button, DatePicker, Select } from "antd";
 
 const AddTaskForm = ({ onAddTask }) => {
+  const [form] = AntForm.useForm(); // ← добавляем форму
   const { Option } = Select;
-  const [taskName, setTaskName] = useState("");
-  const [taskDescription, setTaskDescription] = useState("");
-  const [taskDate, setTaskDate] = useState("");
-  const [taskPriority, setTaskPriority] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (values) => {
     const newTask = {
-      name: taskName,
-      description: taskDescription,
-      date: taskDate,
-      priority: taskPriority || "low",
+      name: values.title.trim(),
+      description: values.description.trim(),
+      date: values.dueDate,
+      priority: values.priority || "low",
     };
 
     onAddTask(newTask);
-    setTaskName("");
-    setTaskDescription("");
-    setTaskDate("");
-    setTaskPriority("low");
+    form.resetFields(); // ← очищаем форму
   };
 
   return (
-    <>
-      <AntForm
-        layout="vertical"
-        className="bg-stone-100 rounded-lg shadow-md border"
-        onFinish={handleSubmit}
+    <AntForm
+      form={form} // ← подключаем форму
+      layout="vertical"
+      className="bg-stone-100 rounded-lg shadow-md border"
+      onFinish={handleSubmit}
+    >
+      <h2 className="text-xl font-bold mb-4 text-gray-700">Добавить задачу</h2>
+
+      <AntForm.Item
+        label="Название задачи"
+        name="title"
+        rules={[
+          { required: true, message: "Введите название задачи!" },
+          {
+            validator: (_, value) =>
+              value && value.trim() !== ""
+                ? Promise.resolve()
+                : Promise.reject("Пробелы — не название :)"),
+          },
+        ]}
       >
-        <h2 className="text-xl font-bold mb-4 text-gray-700">
+        <Input placeholder="Введите название" className="border-gray-300" />
+      </AntForm.Item>
+
+      <AntForm.Item
+        label="Описание"
+        name="description"
+        rules={[
+          { required: true, message: "Введите описание!" },
+          {
+            validator: (_, value) =>
+              value && value.trim() !== ""
+                ? Promise.resolve()
+                : Promise.reject("Пустое описание не канает"),
+          },
+        ]}
+      >
+        <Input.TextArea
+          placeholder="Введите описание"
+          className="border-gray-300"
+        />
+      </AntForm.Item>
+
+      <AntForm.Item
+        label="Дата окончания"
+        name="dueDate"
+        rules={[{ required: true, message: "Выберите дату!" }]}
+      >
+        <DatePicker className="w-full border-gray-300" />
+      </AntForm.Item>
+
+      <AntForm.Item
+        label="Приоритет"
+        name="priority"
+        rules={[{ required: true, message: "Выберите приоритет!" }]}
+        initialValue="low"
+      >
+        <Select className="border-gray-300">
+          <Option value="low">Низкий</Option>
+          <Option value="medium">Средний</Option>
+          <Option value="high">Высокий</Option>
+        </Select>
+      </AntForm.Item>
+
+      <AntForm.Item>
+        <Button type="primary" htmlType="submit" className="w-full">
           Добавить задачу
-        </h2>
-
-        <AntForm.Item
-          label="Название задачи"
-          name="title"
-          rules={[{ required: true, message: "Введите название задачи!" }]}
-        >
-          <Input
-            value={taskName}
-            onChange={(e) => setTaskName(e.target.value)}
-            placeholder="Введите название"
-            className="border-gray-300"
-          />
-        </AntForm.Item>
-
-        <AntForm.Item label="Описание" name="description">
-          <Input.TextArea
-            value={taskDescription}
-            onChange={(e) => setTaskDescription(e.target.value)}
-            placeholder="Введите описание"
-            className="border-gray-300"
-          />
-        </AntForm.Item>
-
-        <AntForm.Item label="Дата окончания" name="dueDate">
-          <DatePicker
-            onChange={(date, dateString) => setTaskDate(dateString)}
-            className="w-full border-gray-300"
-          />
-        </AntForm.Item>
-
-        <AntForm.Item label="Приоритет" name="priority">
-          <Select
-            onChange={(task) => setTaskPriority(task)}
-            className="border-gray-300"
-            defaultValue="low"
-          >
-            <Option value="low">Низкий</Option>
-            <Option value="medium">Средний</Option>
-            <Option value="high">Высокий</Option>
-          </Select>
-        </AntForm.Item>
-
-        <AntForm.Item>
-          <Button type="primary" htmlType="submit" className="w-full">
-            Добавить задачу
-          </Button>
-        </AntForm.Item>
-      </AntForm>
-    </>
+        </Button>
+      </AntForm.Item>
+    </AntForm>
   );
 };
 
