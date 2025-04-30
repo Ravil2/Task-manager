@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const Home = ({ tasks }) => {
   return (
-    <div className="w-full block sm:flex flex-col gap-4 flex-wrap md:flex-nowrap overflow-y-auto max-h-[87vh] custom-scrollbar pr-4">
+    <div className="w-full block sm:flex flex-col gap-4 flex-wrap md:flex-nowrap ">
       <div className="border-b pb-2">
         <h1 className="text-2xl font-bold">Главная страница</h1>
         <p className="text-md py-1 flex flex-col sm:flex-row gap-4 sm:gap-1">
