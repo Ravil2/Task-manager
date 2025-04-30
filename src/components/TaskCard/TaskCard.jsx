@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
+import TaskButton from "../UI/Button/TaskButton";
+import TaskModal from "../UI/Modal/TaskModal";
 
 const TaskCard = ({ tasks }) => {
+  const [modal, setModal] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
   return (
     <div>
       {tasks.map((task, index) => (
@@ -30,8 +34,20 @@ const TaskCard = ({ tasks }) => {
               {task.priority === "low" && "Низкий"}
             </span>
           </p>
+          <TaskButton onClick={() => setSelectedTask(task)} setModal={setModal}>
+            Открыть
+          </TaskButton>
         </div>
       ))}
+      {selectedTask && (
+        <TaskModal
+          name={selectedTask.name}
+          description={selectedTask.description}
+          date={selectedTask.date}
+          priority={selectedTask.priority}
+          onClose={() => setSelectedTask(null)}
+        />
+      )}
     </div>
   );
 };
