@@ -9,6 +9,7 @@ import InProgress from "../../pages/InProgress/InPorgress";
 
 const Routing = () => {
   const [tasks, setTasks] = useState([]);
+  console.log(tasks)
 
   const handleAddTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
@@ -23,7 +24,7 @@ const Routing = () => {
           element={<AddTask onAddTask={handleAddTask} />}
         />
         <Route path="/completed" element={<Completed />} />
-        <Route path="/high-priority" element={<HighPriority />} />
+        <Route path="/high-priority" element={<HighPriority tasks={tasks} />} />
         <Route path="/in-progress" element={<InProgress />} />
         <Route path="*" element={<div>Not Found</div>} />
       </Route>
